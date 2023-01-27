@@ -20,6 +20,7 @@ public class UserController {
     }
     @PostMapping("/User")
     public UserData createUser(@RequestBody UserData userData){
+//        System.out.println( UserData);
         return  userService.createUser(userData);
 
     }
