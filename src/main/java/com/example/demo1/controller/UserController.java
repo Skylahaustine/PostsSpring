@@ -18,19 +18,19 @@ public class UserController {
     private final UserService userService;
 
     @Autowired
-    public UserController(UserService userService){
-        this.userService=userService;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
+
     @PostMapping("/User")
 
-    public ResponseEntity<User> saveUser(@RequestBody User user){
+    public ResponseEntity<User> saveUser(@RequestBody User user) {
         return new ResponseEntity<User>(
                 userService.createUser(user), HttpStatus.CREATED
         );
 
 
     }
-
 
 
 }
