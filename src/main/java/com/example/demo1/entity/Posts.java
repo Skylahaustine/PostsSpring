@@ -11,8 +11,8 @@ public class Posts {
     private Long id;
     private String postName;
 
-@ManyToOne(fetch = FetchType.LAZY)
-    private User user;
+//@ManyToOne(fetch = FetchType.LAZY)
+//    private User user;
 
 
 }
