@@ -29,8 +29,10 @@ public class UserController {
                 userService.createUser(user), HttpStatus.CREATED
         );
 
-
     }
-
-
+@PostMapping("/userwithposts")
+public ResponseEntity<User> saveUserWithPosts (@RequestBody User user){
+        return new ResponseEntity<User>(
+                userService.createUserWithPosts(user), HttpStatus.CREATED);
+}
 }
