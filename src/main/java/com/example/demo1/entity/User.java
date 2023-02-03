@@ -20,4 +20,7 @@ public class User {
     private String otherName;
     @OneToMany(mappedBy = "user" ,cascade=CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Posts> posts;
+
+    @OneToOne(mappedBy = "user")
+    private Profile profile;
 }
