@@ -12,4 +12,5 @@ public interface ProfileService {
     Profile fetchProfileById(long profileId);
 
     Profile updateProfileById(Profile profile, long id);
+    void deleteProfile(long id);
 }

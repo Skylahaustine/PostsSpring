@@ -10,8 +10,8 @@ import java.util.Optional;
 
 @Service
 
-public class ProfileServiceImpl implements ProfileService{
-    private  final ProfileRepo profileRepo;
+public class ProfileServiceImpl implements ProfileService {
+    private final ProfileRepo profileRepo;
 
     public ProfileServiceImpl(ProfileRepo profileRepo) {
         this.profileRepo = profileRepo;
@@ -31,21 +31,29 @@ public class ProfileServiceImpl implements ProfileService{
     public Profile fetchProfileById(long profileId) {
 //        return null;
         Optional<Profile> profile = profileRepo.findById(profileId);
-        if (profile.isPresent()){
+        if (profile.isPresent()) {
             return profile.get();
-        }else{
+        } else {
             return null;
         }
     }
 
     @Override
     public Profile updateProfileById(Profile profile, long id) {
-       Profile existingProfile = profileRepo.findById(id).orElseThrow(
-               ()-> new InvalidConfigurationPropertyValueException("Profile", "Id", "id")
+        Profile existingProfile = profileRepo.findById(id).orElseThrow(
+                () -> new InvalidConfigurationPropertyValueException("Profile", "Id", "id")
 
-       );
+        );
         existingProfile.setProfileName(profile.getProfileName());
         profileRepo.save(existingProfile);
         return existingProfile;
+    }
+
+    @Override
+    public void deleteProfile(long id) {
+        profileRepo.findById(id).orElseThrow(
+                () -> new InvalidConfigurationPropertyValueException("ProfIle", "Id", "id"));
+        profileRepo.deleteById(id);
+
     }
 }

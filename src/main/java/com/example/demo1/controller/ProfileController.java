@@ -34,7 +34,14 @@ public class ProfileController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Profile> updateProfile(@PathVariable("id") long id, @RequestBody Profile profile) {
-        return new ResponseEntity<Profile>(profileService.updateProfileById(profile, id), HttpStatus.OK);
+    public ResponseEntity<Profile> updateProfile(@PathVariable("id") long id,
+                                                 @RequestBody Profile profile) {
+        return new ResponseEntity<Profile>(
+                profileService.updateProfileById(profile, id), HttpStatus.OK);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteProfileById(@PathVariable("id") long id){
+        profileService.deleteProfile(id);
+        return new ResponseEntity<String>("deleted", HttpStatus.OK);
     }
 }
