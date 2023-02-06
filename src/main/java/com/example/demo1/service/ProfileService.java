@@ -8,4 +8,8 @@ public interface ProfileService {
     Profile createProfile(Profile profile);
 
     List<Profile> fetchAllProfiles();
+
+    Profile fetchProfileById(long profileId);
+
+    Profile updateProfileById(Profile profile, long id);
 }

@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PostServiceImpl  implements  PostService{
@@ -26,5 +27,16 @@ public class PostServiceImpl  implements  PostService{
     public List<Posts> fetchAllPosts() {
         return postsRepo.findAll();
 
+    }
+
+    @Override
+    public Posts fetchPostById(long id) {
+        Optional<Posts> posts = postsRepo.findById(id);
+        if(posts.isPresent()){
+            return  posts.get();
+        }else
+        {
+          return   null;
+        }
     }
 }

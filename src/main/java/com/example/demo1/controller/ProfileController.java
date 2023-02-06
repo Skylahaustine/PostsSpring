@@ -27,4 +27,14 @@ public class ProfileController {
     public List<Profile> getAllProfiles() {
         return profileService.fetchAllProfiles();
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Profile> getProfileById(@PathVariable("id") long profileId) {
+        return new ResponseEntity<Profile>(profileService.fetchProfileById(profileId), HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Profile> updateProfile(@PathVariable("id") long id, @RequestBody Profile profile) {
+        return new ResponseEntity<Profile>(profileService.updateProfileById(profile, id), HttpStatus.OK);
+    }
 }

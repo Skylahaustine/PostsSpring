@@ -31,4 +31,9 @@ public class PostsController {
         return postService.fetchAllPosts();
     }
 
+    @GetMapping("/posts/{id}")
+    public  ResponseEntity<Posts> getPostById( @PathVariable("id") long postId){
+        return new ResponseEntity<>(postService.fetchPostById(postId), HttpStatus.OK);
+
+}
 }

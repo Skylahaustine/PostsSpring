@@ -11,4 +11,5 @@ public interface PostService {
     Posts createPosts(Posts posts);
 
     List<Posts> fetchAllPosts();
+    Posts fetchPostById(long id);
 }
