@@ -35,4 +35,11 @@ public class UserServiceImpl implements UserService {
         }
         return savedUser;
     }
+
+    @Override
+    public List<User> fetchAllUsers() {
+        return userrepo.findAll();
+
+
+    }
 }
