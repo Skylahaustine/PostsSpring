@@ -19,11 +19,11 @@ public class Profile {
     private User user;
 
 
-public  Profile dtoToEntity( ProfileData profileData){
-    Profile pr=new Profile();
-    pr.setProfileName(profileData.getProfileName());
-    pr.setProfilePicture(pr.getProfilePicture());
-    return  pr;
-}
+    public Profile entityToDto(){
+        Profile profile = new Profile();
+        profile.setProfileName(profileName);
+        profile.setProfilePicture(profilePicture);
+        return profile;
+    }
 
 }

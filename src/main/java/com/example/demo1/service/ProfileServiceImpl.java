@@ -31,8 +31,9 @@ public class ProfileServiceImpl implements ProfileService {
     public Profile fetchProfileById(long profileId) {
 //        return null;
         Optional<Profile> profile = profileRepo.findById(profileId);
+
         if (profile.isPresent()) {
-            return profile.get();
+            return profile.get().entityToDto();
         } else {
             return null;
         }

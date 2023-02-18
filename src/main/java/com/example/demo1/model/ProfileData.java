@@ -9,11 +9,12 @@ public class ProfileData {
     private String profileName;
     private String profilePicture;
 
-    public ProfileData entityToDto(Profile profile){
-        ProfileData profileDTo = new ProfileData();
-        profileDTo.setProfileName(profile.getProfileName());
-        profileDTo.setProfilePicture(profile.getProfilePicture());
-        return profileDTo;
+
+    public  Profile dtoToEntity( ProfileData profileData){
+        Profile pr=new Profile();
+        pr.setProfileName(profileData.getProfileName());
+        pr.setProfilePicture(pr.getProfilePicture());
+        return  pr;
     }
 
 }
