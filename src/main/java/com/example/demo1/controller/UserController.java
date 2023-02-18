@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/user")
 public class UserController {
     private final UserService userService;
 
@@ -21,7 +21,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/user")
+    @PostMapping
 
     public ResponseEntity<User> saveUser(@RequestBody User user) {
         return new ResponseEntity<User>(
@@ -29,13 +29,19 @@ public class UserController {
         );
 
     }
-@PostMapping("/userwithposts")
+    @PostMapping("/userwithprofile")
+        public ResponseEntity<UserData> saveUserWithProfile(@RequestBody UserData userData){
+return userService.createUser(userData);
+
+    }
+
+@PostMapping("/userswithposts")
 public ResponseEntity<User> saveUserWithPosts (@RequestBody User user){
         return new ResponseEntity<User>(
                 userService.createUserWithPosts(user), HttpStatus.CREATED);
 }
 
-@GetMapping("/user")
+@GetMapping
     public List<User> getAllUsers (){
 
         return userService.fetchAllUsers();

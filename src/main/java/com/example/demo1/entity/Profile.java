@@ -9,13 +9,13 @@ import lombok.Data;
 @Table(name = "profile")
 public class Profile {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String profileName;
     private String profilePicture;
     private  String profileSecret;
-@OneToOne
-@JoinColumn(name = "user_id")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
 
 

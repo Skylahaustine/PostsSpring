@@ -4,6 +4,7 @@ import com.example.demo1.entity.Profile;
 import com.example.demo1.model.ProfileData;
 import com.example.demo1.repository.ProfileRepo;
 import org.springframework.boot.context.properties.source.InvalidConfigurationPropertyValueException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +22,12 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public Profile createProfile(Profile profile) {
-        return profileRepo.save(profile);
+    public ResponseEntity<ProfileData> createProfile(ProfileData profiledata)
+    {
+        Profile profile = profiledata.dtoToEntity(profiledata);
+        profileRepo.save(profile);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(profile.entityToDto());
     }
 
     @Override
@@ -38,16 +43,6 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
 
-//    public Profile fetchProfileById(long profileId) {
-////        return null;
-//        Optional<Profile> profile = profileRepo.findById(profileId);
-//
-//        if (profile.isPresent()) {
-////            return profile.get().entityToDto();
-//        } else {
-//            return null;
-//        }
-//    }
 
 
 @Override
@@ -63,14 +58,15 @@ public class ProfileServiceImpl implements ProfileService {
 
 
     @Override
-    public Profile updateProfileById(Profile profile, long id) {
+    public ResponseEntity<ProfileData> updateProfileById(ProfileData profileData, long id) {
         Profile existingProfile = profileRepo.findById(id).orElseThrow(
                 () -> new InvalidConfigurationPropertyValueException("Profile", "Id", "id")
 
         );
-        existingProfile.setProfileName(profile.getProfileName());
+        existingProfile.setProfileName(profileData.getProfileName());
+        existingProfile.setProfilePicture(profileData.getProfilePicture());
         profileRepo.save(existingProfile);
-        return existingProfile;
+        return ResponseEntity.ok().body(existingProfile.entityToDto());
     }
 
     @Override

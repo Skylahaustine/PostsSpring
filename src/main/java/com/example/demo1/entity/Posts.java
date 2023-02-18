@@ -8,9 +8,10 @@ import lombok.Data;
 @Table(name = "posts")
 public class Posts {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String postName;
+    private String postSecret;
 
 @ManyToOne
 @JoinColumn(name = "user_id")

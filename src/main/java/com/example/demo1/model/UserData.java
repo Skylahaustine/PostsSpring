@@ -12,6 +12,8 @@ public class UserData {
     private String userName;
     private String otherName;
 
+    private ProfileData profileData;
+
 
 //    public User toEntity() {
 //        User user = new User();
@@ -22,3 +24,5 @@ public class UserData {
 //    }
 
 }
+
+

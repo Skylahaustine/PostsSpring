@@ -7,13 +7,13 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 public interface ProfileService {
-    Profile createProfile(Profile profile);
+    ResponseEntity<ProfileData> createProfile(ProfileData profileData);
 
     ResponseEntity<List<ProfileData>> fetchAllProfiles();
 
 //    Profile fetchProfileById(long profileId);
 
-    Profile updateProfileById(Profile profile, long id);
+    ResponseEntity<ProfileData> updateProfileById(ProfileData profileData, long id);
     void deleteProfile(long id);
 
     ProfileData getProfileById(Long id);
