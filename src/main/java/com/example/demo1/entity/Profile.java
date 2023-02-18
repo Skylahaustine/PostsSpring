@@ -19,11 +19,12 @@ public class Profile {
     private User user;
 
 
-    public Profile entityToDto(){
-        Profile profile = new Profile();
-        profile.setProfileName(profileName);
-        profile.setProfilePicture(profilePicture);
-        return profile;
+    public ProfileData entityToDto() {
+        ProfileData profileData = new ProfileData();
+        profileData.setProfileName(profileName);
+        profileData.setProfilePicture(profilePicture);
+        return profileData;
     }
+
 
 }

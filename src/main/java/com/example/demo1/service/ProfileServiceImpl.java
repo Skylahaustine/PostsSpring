@@ -1,6 +1,7 @@
 package com.example.demo1.service;
 
 import com.example.demo1.entity.Profile;
+import com.example.demo1.model.ProfileData;
 import com.example.demo1.repository.ProfileRepo;
 import org.springframework.boot.context.properties.source.InvalidConfigurationPropertyValueException;
 import org.springframework.stereotype.Service;
@@ -27,17 +28,28 @@ public class ProfileServiceImpl implements ProfileService {
         return profileRepo.findAll();
     }
 
-    @Override
-    public Profile fetchProfileById(long profileId) {
-//        return null;
-        Optional<Profile> profile = profileRepo.findById(profileId);
 
-        if (profile.isPresent()) {
-            return profile.get().entityToDto();
+//    public Profile fetchProfileById(long profileId) {
+////        return null;
+//        Optional<Profile> profile = profileRepo.findById(profileId);
+//
+//        if (profile.isPresent()) {
+////            return profile.get().entityToDto();
+//        } else {
+//            return null;
+//        }
+//    }
+@Override
+    public ProfileData getProfileById(Long id) {
+        Optional<Profile> profileOpt = profileRepo.findById(id);
+        if (profileOpt.isPresent()) {
+            Profile profile = profileOpt.get();
+            return profile.entityToDto();
         } else {
             return null;
         }
     }
+
 
     @Override
     public Profile updateProfileById(Profile profile, long id) {

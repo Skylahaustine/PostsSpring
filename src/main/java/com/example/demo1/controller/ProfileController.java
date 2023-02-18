@@ -1,6 +1,7 @@
 package com.example.demo1.controller;
 
 import com.example.demo1.entity.Profile;
+import com.example.demo1.model.ProfileData;
 import com.example.demo1.service.ProfileService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,8 +30,13 @@ public class ProfileController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Profile> getProfileById(@PathVariable("id") long profileId) {
-        return new ResponseEntity<Profile>(profileService.fetchProfileById(profileId), HttpStatus.OK);
+    public ResponseEntity<ProfileData> getProfileById(@PathVariable Long id) {
+        ProfileData profileData = profileService.getProfileById(id);
+        if (profileData != null) {
+            return new ResponseEntity<>(profileData, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PutMapping("/{id}")
