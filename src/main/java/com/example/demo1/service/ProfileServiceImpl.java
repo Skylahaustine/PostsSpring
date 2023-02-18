@@ -4,10 +4,12 @@ import com.example.demo1.entity.Profile;
 import com.example.demo1.model.ProfileData;
 import com.example.demo1.repository.ProfileRepo;
 import org.springframework.boot.context.properties.source.InvalidConfigurationPropertyValueException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 
@@ -24,8 +26,15 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public List<Profile> fetchAllProfiles() {
-        return profileRepo.findAll();
+    public ResponseEntity<List<ProfileData>> fetchAllProfiles() {
+        List<Profile> profiles = profileRepo.findAll();
+        List<ProfileData> profileDataList= profiles.stream()
+                .map(Profile::entityToDto)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok().body(profileDataList);
+
+
+//
     }
 
 

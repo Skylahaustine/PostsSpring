@@ -25,7 +25,7 @@ public class ProfileController {
     }
 
     @GetMapping
-    public List<Profile> getAllProfiles() {
+    public ResponseEntity<List<ProfileData>>getAllProfiles() {
         return profileService.fetchAllProfiles();
     }
 
