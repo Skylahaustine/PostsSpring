@@ -1,5 +1,6 @@
 package com.example.demo1.entity;
 
+import com.example.demo1.model.PostData;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,6 +18,13 @@ public class Posts {
 @JoinColumn(name = "user_id")
 
     private User user;
+
+public PostData entityToDto(){
+    PostData pd = new PostData();
+    pd.setId(getId());
+    pd.setPostName(getPostName());
+    return  pd;
+}
 
 
 }

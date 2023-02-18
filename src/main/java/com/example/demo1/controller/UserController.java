@@ -23,10 +23,9 @@ public class UserController {
 
     @PostMapping
 
-    public ResponseEntity<User> saveUser(@RequestBody User user) {
-        return new ResponseEntity<User>(
-                userService.createUser(user), HttpStatus.CREATED
-        );
+    public ResponseEntity<UserData> saveUser(@RequestBody UserData userData) {
+        return userService.createUser(userData);
+
 
     }
     @PostMapping("/userwithprofile")
@@ -42,7 +41,7 @@ public ResponseEntity<User> saveUserWithPosts (@RequestBody User user){
 }
 
 @GetMapping
-    public List<User> getAllUsers (){
+    public ResponseEntity<List<UserData>> getAllUsers (){
 
         return userService.fetchAllUsers();
 }

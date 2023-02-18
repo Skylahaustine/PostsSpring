@@ -3,6 +3,8 @@ package com.example.demo1.model;
 import com.example.demo1.entity.User;
 import lombok.*;
 
+import java.util.List;
+
 
 @Data
 @AllArgsConstructor
@@ -13,6 +15,8 @@ public class UserData {
     private String otherName;
 
     private ProfileData profileData;
+
+    private List<PostData> postData;
 
 
 //    public User toEntity() {

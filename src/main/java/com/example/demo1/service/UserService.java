@@ -14,6 +14,6 @@ public interface UserService {
 
     User createUserWithPosts(User user);
 
-    List<User> fetchAllUsers();
+    ResponseEntity<List<UserData>> fetchAllUsers();
 
 }

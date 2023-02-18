@@ -6,10 +6,12 @@ import com.example.demo1.entity.User;
 import com.example.demo1.model.UserData;
 import com.example.demo1.repository.PostsRepo;
 import com.example.demo1.repository.UserRepo;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -70,8 +72,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> fetchAllUsers() {
-        return userrepo.findAll();
+    public ResponseEntity<List<UserData>> fetchAllUsers() {
+        List<User> user = userrepo.findAll();
+        List<UserData> userDataList= user.stream()
+                .map(User::entityToDto)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok().body(userDataList);
 
 
 
